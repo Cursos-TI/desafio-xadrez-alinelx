@@ -4,46 +4,66 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+void movbispo(int n){
+    if (n > 0) {
+        printf("Cima, Direita\n");
+        movbispo (n-1);
+    }
+}
+
+void movtorre(int n){
+    if (n > 0){
+        printf("Direita\n");
+        movtorre(n-1);
+    }
+}
+
+void movrainha(int n){
+    if (n > 0) {
+        printf("Esquerda\n");
+        movrainha(n-1);
+    }
+}
+
+
 int main() {
     // Nível Novato - Movimentação das Peças
     // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-    int const bispo = 5;
-    int const torre = 5;
-    int const rainha = 8;
-    int const cavalo = 3;
-    int mov;
+    int bispo = 5;
+    int torre = 5;
+    int rainha = 8;
+    int cavalo = 3;
+    int mov, cavcima, cavdir;
 
     // Implementação de Movimentação do Bispo
     // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+
     printf("\nMovimentação do bispo:\n");
-    for (mov = 1; mov <=bispo; mov++){
-        printf("Cima, Direita\n");
-    }
+    movbispo(bispo);
 
     // Implementação de Movimentação da Torre
     // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+
     printf("\nMovimentação da torre:\n");
-    for (mov = 1; mov <=torre; mov++){
-        printf("Direita\n");
-    }
+    movtorre(torre);
 
     // Implementação de Movimentação da Rainha
     // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-    printf("\nMovimentação da rainha:\n");
-    for (mov = 1; mov <=rainha; mov++){
-        printf("Esquerda\n");
-    }
 
+    printf("\nMovimentação da rainha:\n");
+    movrainha(rainha);
     // Nível Aventureiro - Movimentação do Cavalo
     // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
     // Um loop pode representar a movimentação horizontal e outro vertical.
     printf("\nMovimentação do cavalo:\n");
-    for (mov = 1; mov <= cavalo; mov++){
-        do {
-            printf("Baixo\n");
-            mov++;
-        } while (mov<3);
-        printf("Esquerda\n");
+    for (cavcima = 0, cavdir = 0; cavcima+cavdir <= cavalo; cavcima++){
+        if (cavcima == 2) {
+            printf("Direita\n");
+            cavdir++;
+            continue;
+        }
+        printf("Cima\n");
+        if (cavdir == 1) break;
     }
 
     // Nível Mestre - Funções Recursivas e Loops Aninhados
